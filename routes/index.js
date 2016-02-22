@@ -31,13 +31,13 @@ module.exports = function(io){
     {
 
       socket.join(msg.room);
-      socket.in(msg.room).broadcast.emit("receive:message",{ text:msg.user+' joined!', room: msg.room, self:false });
+      socket.in(msg.room).broadcast.emit("receive:message",{ text:msg.user+' joined to room '+ msg.room + "!", room: msg.room, self:false });
     });
 
     socket.on( "user:left", function( msg )
     {
       socket.leave(msg.room);
-      socket.in(msg.room).broadcast.emit("receive:message",{ text:msg.user+' left!', room: msg.room, self:false });
+      socket.in(msg.room).broadcast.emit("receive:message",{ text:msg.user+' left room '+ msg.room, room: msg.room, self:false });
     });
 
   });

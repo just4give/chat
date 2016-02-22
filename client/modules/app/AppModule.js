@@ -39,7 +39,7 @@ app.controller('ChatController', ["$rootScope", "$scope","$log", "Socket", funct
             user: $scope.user,
             room: $scope.room
         });
-       $scope.messages.push(  {text:"Welcome, "+$scope.user+"!",room:$scope.room,self:false});
+       $scope.messages.push(  {text:"Welcome, "+$scope.user+" to room "+$scope.room,room:$scope.room,self:false});
 
     }
 

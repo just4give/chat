@@ -62,7 +62,7 @@
         </div><!-- /input-group -->
       </div>
     </div>
-    <button class="btn bg-danger" ng-click="disconnect()">Disconnect</button>
+    <button class="btn bg-danger" ng-disabled="!joined" ng-click="disconnect()">Disconnect</button>
 
   </div>
     <script src="vendor/jquery/dist/jquery.min.js"></script>
