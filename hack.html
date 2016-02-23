@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="chatApp">
+  <head>
+    <title>Chat hack</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+      .margin-top-20{
+        margin-top: 20px;
+      }
+      .margin-bottom-40{
+        margin-bottom: 40px;
+      }
+      .box{
+        border: 1px solid rgba(128, 128, 128, 0.25);
+        padding: 10px;
+        box-shadow: 2px 2px 2px 2px rgba(0,0,0,.1);
+      }
+      .text-self{
+        color: gray;
+      }
+      .text-other{
+        color: blue;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+
+
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+
+     <script>
+       var socket = io.connect('http://localhost:3000');
+       console.log(socket);
+       socket.on('');
+
+     </script>
+
+  </body>
+</html>

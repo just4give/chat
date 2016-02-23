@@ -18,6 +18,10 @@
     "angular": "~1.5.0",
     "bootstrap": "~3.3.6",
     "font-awesome": "fontawesome#~4.5.0",
-    "angular-socket-io": "~0.7.0"
+    "angular-socket-io": "~0.7.0",
+    "angular-ui-router": "~0.2.18",
+    "AngularJS-Toaster": "angularjs-toaster#~1.2.0",
+    "animate.css": "~3.5.1",
+    "angular-animate": "~1.5.0"
   }
 }

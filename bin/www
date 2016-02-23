@@ -21,7 +21,24 @@ app.set('port', port);
 
 var server = http.createServer(app);
 app.io.attach( server );
+/*app.io.set('authorization', function(handshake, accept){
+  var domain = handshake.headers.referer.replace('http://','').replace('https://','').split(/[/?#]/)[0];
+  console.log("handshake ", domain);
+  accept(null,true);
+});
 
+app.io.use(function(socket, next){
+
+  console.log("token ", socket.handshake.query.token);
+  console.log("authenticated in use ? ", socket.request.isAuthenticated());
+ /!* if (joinServerParameters.token == "xxx" ){
+    next();
+  } else {
+    //next(new Error('Authentication error'));
+  }
+  return;*!/
+  next();
+});*/
 /* create socket io */
 /*var io = require('socket.io')(server);
 io.on('connection', function(socket){

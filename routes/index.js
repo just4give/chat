@@ -12,7 +12,8 @@ module.exports = function(io){
 
   io.on( "connection", function( socket )
   {
-    console.log( "A user connected" );
+    console.log( "A user connected " , socket.request.user);
+
     var defaultRoom = 'general';
     var rooms = ["general", "angular", "socket.io", "express", "node", "mongo", "PHP", "laravel"];
 
@@ -38,6 +39,10 @@ module.exports = function(io){
     {
       socket.leave(msg.room);
       socket.in(msg.room).broadcast.emit("receive:message",{ text:msg.user+' left room '+ msg.room, room: msg.room, self:false });
+    });
+
+    socket.on('disconnect',function(){
+        console.log("User disconnected ", socket.request.user);
     });
 
   });

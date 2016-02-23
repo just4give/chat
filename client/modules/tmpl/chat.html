@@ -1,0 +1,39 @@
+<div class="col-xs-12 col-sm-6 col-sm-offset-3 box"   >
+    <h2 class="text-center margin-bottom-40"> <span class="label label-default ">Chat Application</span></h2>
+
+
+    <div class="row" >
+        <div class="col-xs-6">
+            <input type="text" class="form-control" placeholder="Enter name" ng-model="user" >
+        </div>
+        <div class="col-xs-6">
+            <div class="input-group" style="margin-bottom: 20px">
+
+                <select class="form-control" ng-options="r as r for r in rooms" ng-model="room"></select>
+          <span class="input-group-btn">
+            <button class="btn btn-success" type="button" ng-click="join(room)" ng-disabled="!room || !user">Join</button>
+          </span>
+            </div><!-- /input-group -->
+        </div>
+    </div>
+
+    <div class="panel panel-default" ng-show="joined">
+        <div class="panel-body ">
+            <ul class="list-unstyled">
+                <li ng-repeat="msg in messages" ng-class="[{'text-self':msg.self},{'text-other': !msg.self}]">
+                    <span>{{msg.user }}</span><span ng-show="msg.user">:</span><span>{{msg.text}}</span></li>
+            </ul>
+        </div>
+        <div class="panel-footer">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Type your message..." ng-model="message">
+          <span class="input-group-btn">
+            <button class="btn btn-primary" type="button" ng-click="send(message)">Send</button>
+          </span>
+            </div><!-- /input-group -->
+        </div>
+    </div>
+    <button class="btn btn-danger" ng-disabled="!joined" ng-click="disconnect()">Disconnect</button>
+    <button class="btn btn-danger" ng-show="loggedIn" ng-click="logout()">Logout</button>
+
+</div>

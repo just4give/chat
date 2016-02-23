@@ -2,8 +2,11 @@
 <html ng-app="chatApp">
   <head>
     <title><%= title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="vendor/angularjs-toaster/toaster.min.css" rel="stylesheet">
+    <link href="vendor/animate.css/animate.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet" />
     <style>
       .margin-top-20{
@@ -26,54 +29,22 @@
       }
     </style>
   </head>
-  <body ng-controller="ChatController">
-  <div class="col-xs-12 col-sm-6 col-sm-offset-3 box">
-    <h2 class="text-center margin-bottom-40"> <span class="label label-default ">Chat Application</span></h2>
+  <body>
+  <toaster-container toaster-options="{'close-button': true}"></toaster-container>
+    <div ui-view></div>
 
-
-  <div class="row" >
-    <div class="col-xs-6">
-      <input type="text" class="form-control" placeholder="Enter name" ng-model="user">
-    </div>
-    <div class="col-xs-6">
-      <div class="input-group" style="margin-bottom: 20px">
-
-        <select class="form-control" ng-options="r as r for r in rooms" ng-model="room"></select>
-          <span class="input-group-btn">
-            <button class="btn btn-success" type="button" ng-click="join(room)" ng-disabled="!room || !user">Join</button>
-          </span>
-      </div><!-- /input-group -->
-    </div>
-</div>
-
-    <div class="panel panel-default" ng-show="joined">
-      <div class="panel-body ">
-       <ul class="list-unstyled">
-         <li ng-repeat="msg in messages" ng-class="[{'text-self':msg.self},{'text-other': !msg.self}]">
-           <span>{{msg.user }}</span><span ng-show="msg.user">:</span><span>{{msg.text}}</span></li>
-       </ul>
-      </div>
-      <div class="panel-footer">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Type your message..." ng-model="message">
-          <span class="input-group-btn">
-            <button class="btn btn-primary" type="button" ng-click="send(message)">Send</button>
-          </span>
-        </div><!-- /input-group -->
-      </div>
-    </div>
-    <button class="btn bg-danger" ng-disabled="!joined" ng-click="disconnect()">Disconnect</button>
-
-  </div>
     <script src="vendor/jquery/dist/jquery.min.js"></script>
     <script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="vendor/angular/angular.min.js"></script>
-
+    <script src="vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="vendor/angular-animate/angular-animate.min.js"></script>
+    <script src="vendor/angularjs-toaster/toaster.min.js"></script>
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="vendor/angular-socket-io/socket.js"></script>
 
     <script src="modules/app/AppModule.js"></script>
+    <script src="modules/app/Service.js"></script>
 
     <!-- <script>
        var socket = io.connect();
