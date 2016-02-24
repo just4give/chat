@@ -51,7 +51,7 @@ app.run(["$log","$rootScope", "$state", "UserService",function ($log,$rootScope,
     })
 }]);
 app.factory('Socket',[ "socketFactory",function (socketFactory) {
-    var myIoSocket = io.connect("http://localhost:3000");
+    var myIoSocket = io.connect();
 
     var socket = socketFactory({
         ioSocket: myIoSocket
@@ -101,7 +101,10 @@ app.controller('ChatController', ["$rootScope", "$scope","$log", "Socket","UserS
         $log.debug("error ");
         toaster.pop("error","","Could not connect to chat server");
     });
-    Socket.connect();
+
+
+   Socket.connect();
+
    $scope.send = function(message){
        var newMsg = {
            text: message,
@@ -116,7 +119,7 @@ app.controller('ChatController', ["$rootScope", "$scope","$log", "Socket","UserS
     }
 
     $scope.join = function(room){
-        Socket.connect();
+
         $scope.joined=true;
         Socket.emit('user:joined',{
             user: $rootScope.user,
@@ -127,7 +130,7 @@ app.controller('ChatController', ["$rootScope", "$scope","$log", "Socket","UserS
     }
 
     $scope.disconnect = function(){
-        $log.debug('disconnecting');
+
         Socket.emit('user:left',{
             user: $rootScope.user,
             room: $scope.room

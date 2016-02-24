@@ -12,7 +12,7 @@ module.exports = function(io){
 
   io.on( "connection", function( socket )
   {
-    console.log( "A user connected " , socket.request.user);
+    console.log( "** New user connected " , socket.request.user);
 
     var defaultRoom = 'general';
     var rooms = ["general", "angular", "socket.io", "express", "node", "mongo", "PHP", "laravel"];
@@ -24,7 +24,9 @@ module.exports = function(io){
     socket.on( "send:message", function( msg )
     {
       console.log("user message ",msg);
+      console.log("received from ", socket.request.user);
       msg.self=false;
+      msg.user=socket.request.user.displayName;
       socket.in(msg.room).broadcast.emit("receive:message",msg);
     });
 
@@ -32,13 +34,13 @@ module.exports = function(io){
     {
 
       socket.join(msg.room);
-      socket.in(msg.room).broadcast.emit("receive:message",{ text:msg.user+' joined to room '+ msg.room + "!", room: msg.room, self:false });
+      socket.in(msg.room).broadcast.emit("receive:message",{ text:socket.request.user.displayName+' joined to room '+ msg.room + "!", room: msg.room, self:false });
     });
 
     socket.on( "user:left", function( msg )
     {
       socket.leave(msg.room);
-      socket.in(msg.room).broadcast.emit("receive:message",{ text:msg.user+' left room '+ msg.room, room: msg.room, self:false });
+      socket.in(msg.room).broadcast.emit("receive:message",{ text:socket.request.user.displayName+' left room '+ msg.room, room: msg.room, self:false });
     });
 
     socket.on('disconnect',function(){
